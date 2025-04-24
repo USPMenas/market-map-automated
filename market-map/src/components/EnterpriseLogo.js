@@ -1,11 +1,26 @@
 // src/components/EnterpriseLogo.js
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const EnterpriseLogo = ({ enterprise_name, enterprise_logo }) => {
+  const [formatIndex, setFormatIndex] = useState(0);
+
+  const formats = [".png", ".jpeg", ".jpg"];
+  const srcBase = enterprise_logo.replace(/\.(png|jpg|jpeg)$/, ""); // remove extensão, se tiver
+
+  const handleError = () => {
+    if (formatIndex < formats.length - 1) {
+      setFormatIndex((prev) => prev + 1);
+    }
+  };
+
   return (
     <LogoContainer title={enterprise_name}>
-      <LogoImage src={enterprise_logo} alt={enterprise_name} />
+      <LogoImage
+        src={`${srcBase}${formats[formatIndex]}`}
+        alt={enterprise_name}
+        onError={handleError}
+      />
     </LogoContainer>
   );
 };
