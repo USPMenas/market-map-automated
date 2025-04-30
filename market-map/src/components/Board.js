@@ -39,9 +39,8 @@ export default Board;
 
 const BoardGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
   justify-content: center;
   gap: 2rem;
-  max-width: 1200px;
   margin: 0 auto;
 `;

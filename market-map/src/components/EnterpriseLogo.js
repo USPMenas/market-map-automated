@@ -28,14 +28,15 @@ const EnterpriseLogo = ({ enterprise_name, enterprise_logo }) => {
 export default EnterpriseLogo;
 
 const LogoContainer = styled.div`
-  width: 60px;
-  height: 60px;
+  width: 72px;
+  height: 72px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  /* border: 1px solid #ccc;
+  border-radius: 8px; */
   background-color: #fafafa;
+  padding: 4px;
 `;
 
 const LogoImage = styled.img`

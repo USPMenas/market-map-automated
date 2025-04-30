@@ -239,8 +239,7 @@ function App() {
   return (
     <AppContainer>
       <Title>USA Manufacturing Market Map</Title>
-      <Board boardType="category" enterprises={data} />
-      <div margin="80px">a</div>
+      {/* <Board boardType="category" enterprises={data} /> */}
       <Board boardType="subcategory" enterprises={data} />
     </AppContainer>
   );
