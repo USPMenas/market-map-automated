@@ -1,212 +1,14 @@
 // src/App.js
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import Board from "./components/Board";
 import * as XLSX from "xlsx";
 
-// const mockData = [
-//   {
-//     enterprise_name: "Tesla",
-//     enterprise_logo: "/logos/tesla.png",
-//     enterprise_category: "Made-in-USA",
-//     enterprise_subcategory: "EVs",
-//   },
-//   {
-//     enterprise_name: "Xometry",
-//     enterprise_logo: "/logos/xometry.png",
-//     enterprise_category: "Platform/Marketplace",
-//     enterprise_subcategory: "Pharmacie",
-//   },
-//   {
-//     enterprise_name: "Hiive",
-//     enterprise_logo: "/logos/xometry.png",
-//     enterprise_category: "Robotics",
-//     enterprise_subcategory: "Automation Indutry",
-//   },
-//   {
-//     enterprise_name: "Adilson",
-//     enterprise_logo: "/logos/tesla.png",
-//     enterprise_category: "Made-in-USA",
-//     enterprise_subcategory: "Tech",
-//   },
-//   {
-//     enterprise_name: "Pedro",
-//     enterprise_logo: "/logos/xometry.png",
-//     enterprise_category: "Platform/Marketplace",
-//     enterprise_subcategory: "Hallowin",
-//   },
-//   {
-//     enterprise_name: "Felipe",
-//     enterprise_logo: "/logos/xometry.png",
-//     enterprise_category: "Robotics",
-//     enterprise_subcategory: "Funny",
-//   },
-//   {
-//     enterprise_name: "Tesla",
-//     enterprise_logo: "/logos/tesla.png",
-//     enterprise_category: "Made-in-USA",
-//     enterprise_subcategory: "EVs",
-//   },
-//   {
-//     enterprise_name: "Xometry",
-//     enterprise_logo: "/logos/xometry.png",
-//     enterprise_category: "Platform/Marketplace",
-//     enterprise_subcategory: "Pharmacie",
-//   },
-//   {
-//     enterprise_name: "Hiive",
-//     enterprise_logo: "/logos/xometry.png",
-//     enterprise_category: "Robotics",
-//     enterprise_subcategory: "Automation Indutry",
-//   },
-//   {
-//     enterprise_name: "Adilson",
-//     enterprise_logo: "/logos/tesla.png",
-//     enterprise_category: "Made-in-USA",
-//     enterprise_subcategory: "Tech",
-//   },
-//   {
-//     enterprise_name: "Pedro",
-//     enterprise_logo: "/logos/xometry.png",
-//     enterprise_category: "Platform/Marketplace",
-//     enterprise_subcategory: "Hallowin",
-//   },
-//   {
-//     enterprise_name: "Felipe",
-//     enterprise_logo: "/logos/xometry.png",
-//     enterprise_category: "Robotics",
-//     enterprise_subcategory: "Funny",
-//   },
-//   {
-//     enterprise_name: "Tesla",
-//     enterprise_logo: "/logos/tesla.png",
-//     enterprise_category: "Made-in-USA",
-//     enterprise_subcategory: "EVs",
-//   },
-//   {
-//     enterprise_name: "Xometry",
-//     enterprise_logo: "/logos/xometry.png",
-//     enterprise_category: "Platform/Marketplace",
-//     enterprise_subcategory: "Pharmacie",
-//   },
-//   {
-//     enterprise_name: "Hiive",
-//     enterprise_logo: "/logos/xometry.png",
-//     enterprise_category: "Robotics",
-//     enterprise_subcategory: "Automation Indutry",
-//   },
-//   {
-//     enterprise_name: "Adilson",
-//     enterprise_logo: "/logos/tesla.png",
-//     enterprise_category: "Made-in-USA",
-//     enterprise_subcategory: "Tech",
-//   },
-//   {
-//     enterprise_name: "Pedro",
-//     enterprise_logo: "/logos/xometry.png",
-//     enterprise_category: "Platform/Marketplace",
-//     enterprise_subcategory: "Hallowin",
-//   },
-//   {
-//     enterprise_name: "Felipe",
-//     enterprise_logo: "/logos/xometry.png",
-//     enterprise_category: "Robotics",
-//     enterprise_subcategory: "Funny",
-//   },
-//   {
-//     enterprise_name: "Tesla",
-//     enterprise_logo: "/logos/tesla.png",
-//     enterprise_category: "Made-in-USA",
-//     enterprise_subcategory: "EVs",
-//   },
-//   {
-//     enterprise_name: "Xometry",
-//     enterprise_logo: "/logos/xometry.png",
-//     enterprise_category: "Platform/Marketplace",
-//     enterprise_subcategory: "Pharmacie",
-//   },
-//   {
-//     enterprise_name: "Hiive",
-//     enterprise_logo: "/logos/xometry.png",
-//     enterprise_category: "Robotics",
-//     enterprise_subcategory: "Automation Indutry",
-//   },
-//   {
-//     enterprise_name: "Adilson",
-//     enterprise_logo: "/logos/tesla.png",
-//     enterprise_category: "Made-in-USA",
-//     enterprise_subcategory: "Tech",
-//   },
-//   {
-//     enterprise_name: "Pedro",
-//     enterprise_logo: "/logos/xometry.png",
-//     enterprise_category: "Platform/Marketplace",
-//     enterprise_subcategory: "Hallowin",
-//   },
-//   {
-//     enterprise_name: "Felipe",
-//     enterprise_logo: "/logos/xometry.png",
-//     enterprise_category: "Robotics",
-//     enterprise_subcategory: "Funny",
-//   },
-//   {
-//     enterprise_name: "Tesla",
-//     enterprise_logo: "/logos/tesla.png",
-//     enterprise_category: "Made-in-USA",
-//     enterprise_subcategory: "EVs",
-//   },
-//   {
-//     enterprise_name: "Xometry",
-//     enterprise_logo: "/logos/xometry.png",
-//     enterprise_category: "Platform/Marketplace",
-//     enterprise_subcategory: "Pharmacie",
-//   },
-//   {
-//     enterprise_name: "Hiive",
-//     enterprise_logo: "/logos/xometry.png",
-//     enterprise_category: "Robotics",
-//     enterprise_subcategory: "Automation Indutry",
-//   },
-//   {
-//     enterprise_name: "Adilson",
-//     enterprise_logo: "/logos/tesla.png",
-//     enterprise_category: "Made-in-USA",
-//     enterprise_subcategory: "Tech",
-//   },
-//   {
-//     enterprise_name: "Pedro",
-//     enterprise_logo: "/logos/xometry.png",
-//     enterprise_category: "Platform/Marketplace",
-//     enterprise_subcategory: "Hallowin",
-//   },
-//   {
-//     enterprise_name: "Felipe",
-//     enterprise_logo: "/logos/xometry.png",
-//     enterprise_category: "Robotics",
-//     enterprise_subcategory: "Funny",
-//   },
-//   {
-//     enterprise_name: "Teste1",
-//     enterprise_logo: "/logos/tesla.png",
-//     enterprise_category: "CAT1",
-//     enterprise_subcategory: "Tech",
-//   },
-//   {
-//     enterprise_name: "Teste2",
-//     enterprise_logo: "/logos/xometry.png",
-//     enterprise_category: "CAT2",
-//     enterprise_subcategory: "Hallowin",
-//   },
-//   {
-//     enterprise_name: "Teste3",
-//     enterprise_logo: "/logos/xometry.png",
-//     enterprise_category: "CAT3",
-//     enterprise_subcategory: "Funny",
-//   },
-// ];
+import { toJpeg } from "html-to-image";
 
 function App() {
   const [data, setData] = useState([]);
+  const boardRef = useRef(null);
 
   useEffect(() => {
     const fetchExcelData = async () => {
@@ -236,12 +38,32 @@ function App() {
     fetchExcelData();
   }, []);
 
+  const handleExport = async () => {
+    if (boardRef.current === null) return;
+    const dataUrl = await toJpeg(boardRef.current, {
+      quality: 1,
+      cacheBust: true,
+    });
+    const link = document.createElement("a");
+    link.download = "market-map.jpeg";
+    link.href = dataUrl;
+    link.click();
+  };
+
+  {
+    /* <Board boardType="category" enterprises={data} /> */
+  }
+
   return (
-    <AppContainer>
-      <Title>USA Manufacturing Market Map</Title>
-      {/* <Board boardType="category" enterprises={data} /> */}
-      <Board boardType="subcategory" enterprises={data} />
-    </AppContainer>
+    <>
+      <Button onClick={handleExport}>Export as JPEG</Button>
+      <AppContainer>
+        <BoardWrapper ref={boardRef}>
+          <Title>USA Manufacturing Market Map</Title>
+          <Board boardType="subcategory" enterprises={data} />
+        </BoardWrapper>
+      </AppContainer>
+    </>
   );
 }
 
@@ -259,4 +81,19 @@ const Title = styled.h1`
   font-weight: bold;
   text-align: center;
   margin-bottom: 2rem;
+`;
+
+const Button = styled.button`
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+`;
+
+const BoardWrapper = styled.div`
+  background-color: #f4f4f4;
+
+  /* background: white; */
+  padding: 2rem;
+
+  border: 2px dashed red;
 `;

@@ -20,6 +20,7 @@ const EnterpriseLogo = ({ enterprise_name, enterprise_logo }) => {
         src={`${srcBase}${formats[formatIndex]}`}
         alt={enterprise_name}
         onError={handleError}
+        crossOrigin="anonymous"
       />
     </LogoContainer>
   );
@@ -28,8 +29,8 @@ const EnterpriseLogo = ({ enterprise_name, enterprise_logo }) => {
 export default EnterpriseLogo;
 
 const LogoContainer = styled.div`
-  width: 72px;
-  height: 72px;
+  width: 60px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;

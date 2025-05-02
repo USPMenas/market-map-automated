@@ -63,7 +63,7 @@ const AllSubcategories = styled.div`
   justify-content: center;
   /* gap: 2rem; */
 
-  max-width: 800px;
+  max-width: 700px;
 `;
 
 const SubcategorySection = styled.div`
